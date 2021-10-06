@@ -1,0 +1,19 @@
+﻿<UserControl
+    x:Class="SatisfactoryCalculator.ItemView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <StackPanel Orientation="Horizontal">
+        <TextBlock Text="{Binding Type, FallbackValue=Type}" Width="100"/>
+        <TextBlock Text="{Binding ConstructionTime, FallbackValue=ConstructionTime}" Width="30"/>
+        <TextBox Text="{Binding Amount, FallbackValue=Amount, Mode=TwoWay}"  Width="80"/>
+        <TextBlock Text= "{Binding AmountDist, FallbackValue=PotentialAmount}" Width="50"/>
+        <TextBlock Text= "{Binding PotentialAmount, FallbackValue=PotentialAmount}" Width="50"/>
+    </StackPanel>
+
+</UserControl>
