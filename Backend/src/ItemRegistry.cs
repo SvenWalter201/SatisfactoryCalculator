@@ -26,13 +26,21 @@ namespace Backend
 
         ItemRegistry()
         {
-            InitRegistry();
         }
 
         public void InitRegistry()
         {
             CSVReader reader = new CSVReader();
-            Items = reader.ReadItems();
+
+            try
+            {
+                Items = reader.ReadItems();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("T2");
+                throw e;
+            }
 
             SortItemsIntoLists();
             //CalculatePotentialAmounts();
@@ -64,9 +72,8 @@ namespace Backend
         public void CalculatePotentialAmounts(Item item, int newAmount)
         {
             if (newAmount < item.Amount)
-            {
                 Reduce(item.Type);
-            }
+            
 
             item.Amount = newAmount;
 
@@ -81,17 +88,12 @@ namespace Backend
             for (int i = 0; i < Items.Count; i++)
             {
                 Items[i].AmountInUse = (int)usedItems[i];
-                Console.WriteLine("{0} has {1} in use", Items[i].Type, Items[i].AmountInUse);
+                //Console.WriteLine("{0} has {1} in use", Items[i].Type, Items[i].AmountInUse);
             }
 
             DeterminePotentialAmount(ConstructorItems, usedItems);
             DeterminePotentialAmount(AssemblerItems, usedItems);
             DeterminePotentialAmount(ManufacturerItems, usedItems);
-        }
-
-        void RecalculateAmount(List<Item> itemList, float[] usedItems)
-        {
-
         }
 
         void DeterminePotentialAmount(List<Item> itemList, float[] usedItems)
@@ -145,6 +147,7 @@ namespace Backend
                     return i;
             }
 
+            Console.WriteLine("The Item {1} does not exist", name);
             return -1;
         }
 

@@ -6,14 +6,31 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="450">
 
-    <StackPanel Orientation="Horizontal">
-        <TextBlock Text="{Binding Type, FallbackValue=Type}" Width="100"/>
-        <TextBlock Text="{Binding ConstructionTime, FallbackValue=ConstructionTime}" Width="30"/>
-        <TextBox Text="{Binding Amount, FallbackValue=Amount, Mode=TwoWay}"  Width="80"/>
-        <TextBlock Text= "{Binding AmountDist, FallbackValue=PotentialAmount}" Width="50"/>
-        <TextBlock Text= "{Binding PotentialAmount, FallbackValue=PotentialAmount}" Width="50"/>
+    <StackPanel Orientation="Horizontal" >
+        <StackPanel Orientation="Vertical" Background= "#82a9c4">
+            <Image Source="{Binding ImgPath, FallbackValue=Assets/ItemIcons/Resources/copper_ore.png}" Width="130" Height="100"/>
+            <TextBlock Text="{Binding Type, FallbackValue=Type}" 
+                       Width="130" Margin="5" TextWrapping="Wrap" TextAlignment="Center" Height="100"/>
+
+        </StackPanel>
+        <RelativePanel Background="#bde4ff">
+            <TextBlock Text="{Binding ConstructionTime, FallbackValue=C}" 
+                       Width="40" Margin="5" TextWrapping="Wrap" TextAlignment="Center" Height="100"/>
+        </RelativePanel>
+        <RelativePanel Background="#82a9c4">
+            <TextBox Text="{Binding Amount, FallbackValue=A, Mode=TwoWay}"  
+                     Width="90" Margin="5" TextWrapping="Wrap" TextAlignment="Center" Height="100"/>
+        </RelativePanel>
+        <RelativePanel Background="#bde4ff">
+            <TextBlock Text= "{Binding AmountDist, FallbackValue=ADis}" 
+                       Width="70" Margin="5" TextWrapping="Wrap" TextAlignment="Center" Height="100"/>
+        </RelativePanel>
+        <RelativePanel Background="#82a9c4">
+            <TextBlock Text= "{Binding PotentialAmount, FallbackValue=APot}" 
+                       Width="70" Margin="5" TextWrapping="Wrap" TextAlignment="Center" Height="100"/>
+        </RelativePanel>
     </StackPanel>
-
+<!-- 140 + 50 + 100 + 80 + 80 = 450-->
 </UserControl>

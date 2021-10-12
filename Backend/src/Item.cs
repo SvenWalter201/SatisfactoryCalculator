@@ -5,6 +5,7 @@
         public string Type { get; }
         public ComponentRequirement[] Components { get; }
         public float CraftTime { get; }
+        public string ImgPath { get; }
 
         int amount = 0;
         public int Amount 
@@ -36,7 +37,7 @@
         int amountFree = 0;
         public int AmountFree { get => amountFree; set => amountFree = value; }
 
-        public Item(string type, ComponentRequirement[] requirements, float craftTime)
+        public Item(string type, ComponentRequirement[] requirements, float craftTime, string imgPath)
         {
             Type = type;
             Components = requirements;
@@ -45,6 +46,8 @@
                 potentialAmount = 1000;
             else
                 potentialAmount = 0;
+
+            ImgPath = imgPath;
         }
 
         public override string ToString()

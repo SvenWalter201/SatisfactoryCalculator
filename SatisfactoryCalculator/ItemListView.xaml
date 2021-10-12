@@ -13,7 +13,7 @@
         <ItemsControl ItemsSource="{Binding Items}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <local:ItemView/>
+                    <local:ItemView Width="450"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

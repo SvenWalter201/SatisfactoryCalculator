@@ -1,4 +1,5 @@
 ﻿using Backend;
+using System;
 using System.Collections.Generic;
 
 namespace SatisfactoryCalculator
@@ -29,12 +30,73 @@ namespace SatisfactoryCalculator
 
         ItemRegistry registry;
 
+        public bool SaveCall(Action func, string messageOverride = "", SeverityLevel severityLevel = SeverityLevel.TRIVIAL)
+        {
+            try
+            {
+                func.Invoke();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageDisplay.Instance.DisplayExceptionMessage(e, severityLevel, messageOverride);
+                return false;
+            }
+        }
+
+        public bool SaveCall<A>(Action<A> func, A arg1, string messageOverride = "", SeverityLevel severityLevel = SeverityLevel.TRIVIAL)
+        {
+            try
+            {
+                func.Invoke(arg1);
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageDisplay.Instance.DisplayExceptionMessage(e, SeverityLevel.TRIVIAL);
+                return false;
+            }
+        }
+
+        public bool SaveCall<A, B>(Action<A, B> func, A arg1, B arg2, string messageOverride = "", SeverityLevel severityLevel = SeverityLevel.TRIVIAL)
+        {
+            try
+            {
+                func.Invoke(arg1, arg2);
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageDisplay.Instance.DisplayExceptionMessage(e, severityLevel, messageOverride);
+                return false;
+            }
+        }
+
+        public bool SaveCall<A,B,C>(Action<A,B,C> func, A arg1, B arg2, C arg3, string messageOverride = "", SeverityLevel severityLevel = SeverityLevel.TRIVIAL)
+        {
+            try
+            {
+                func.Invoke(arg1, arg2, arg3);
+                return true;
+            }
+            catch(Exception e)
+            {
+                MessageDisplay.Instance.DisplayExceptionMessage(e, severityLevel, messageOverride);
+                return false;
+            }
+        }
+
         public void Init()
         {
             ConsoleAllocator.ShowConsoleWindow();
 
             registry = ItemRegistry.Instance;
-            registry.PrintRegistry();
+
+            if(!SaveCall(() => registry.InitRegistry(), "Could not initialize ItemRegistry\nApplication will now shut down", SeverityLevel.FATAL))
+            {
+                return;
+            }
+            //registry.PrintRegistry();
 
             List<ItemViewModel> resourceItemViewModels = new List<ItemViewModel>(registry.Resources.Count);
             List<ItemViewModel> constructorItemViewModels = new List<ItemViewModel>(registry.ConstructorItems.Count);

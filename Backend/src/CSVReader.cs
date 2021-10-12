@@ -4,43 +4,68 @@ using System.Collections.Generic;
 
 namespace Backend
 {
-    class CSVReader
+
+
+    public class CSVReader
     {
-        const string filePath = "Items.csv";
+        const string itemsFilePath = "Items.csv";
+        const string imgPathPrefix = "Assets/ItemIcons/";
+
+        int itemsCount = 0;
 
         public List<Item> ReadItems()
         {
-            var file = File.ReadLines(filePath);
+            var file = File.ReadLines(itemsFilePath);
             List<string> lines = new List<string>(file);
-            List<Item> items = new List<Item>(lines.Count);
+            itemsCount = lines.Count;
+            List<Item> items = new List<Item>(itemsCount);
 
-            for (int i = 0; i < lines.Count; i++)
+            for (int i = 0; i < itemsCount; i++)
             {
                 string currentLine = lines[i];
 
                 string[] fragments = currentLine.Split(';');
                 string name = fragments[0];
                 string componentsAmount = fragments[1];
-                string craftTimeStr = fragments[fragments.Length - 1];
-
+                string craftTimeStr = fragments[fragments.Length - 2];
+                string imgPath = imgPathPrefix + fragments[fragments.Length - 1];
+                
+                Console.WriteLine(imgPath);
                 ComponentRequirement[] components = new ComponentRequirement[Convert(componentsAmount)];
 
-                for (int j = 2, index = 0; j < fragments.Length - 2; j += 2, index++)
+                for (int j = 2, index = 0; j < fragments.Length - 3; j += 2, index++)
                 {
                     string componentAmount = fragments[j];
                     string componentName = fragments[j + 1];
 
-                    components[index] = new ComponentRequirement
+                    try
                     {
-                        amount = ConvertF(componentAmount),
-                        item = componentName
-                    };
+                        components[index] = new ComponentRequirement
+                        {
+                            amount = ConvertF(componentAmount),
+                            item = componentName
+                        };
+                    }
+                    catch(Exception e)
+                    {
+                        Console.WriteLine("T1");
+                        throw e;
+                    }
                 }
 
-                float craftTime = ConvertF(craftTimeStr);
+                try
+                {
+                    float craftTime = ConvertF(craftTimeStr);
 
-                Item item = new Item(name, components, craftTime);
-                items.Add(item);
+                    Item item = new Item(name, components, craftTime, imgPath);
+                    items.Add(item);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("T1");
+                    throw e;
+                }
+
             }
 
             return items;
@@ -52,12 +77,10 @@ namespace Backend
             {
                 return int.Parse(input);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine("CSV file invalid");
+                throw e;
             }
-
-            return 0;
         }
 
         public float ConvertF(string input)
@@ -66,12 +89,37 @@ namespace Backend
             {
                 return float.Parse(input);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine("CSV file invalid");
+                Console.WriteLine("T0");
+                throw e;
+            }
+        }
+
+
+        public void SaveAmounts(List<Item> items)
+        {
+            
+        }
+
+        public int[] LoadAmounts(string saveFileName)
+        {
+            string amounts = File.ReadAllText(saveFileName);
+            string[] amountsSeperated = amounts.Split(';');
+
+            if(amountsSeperated.Length != itemsCount)
+            {
+                Console.WriteLine("Can not load Save File, because Item Setup was changed");
+                return null;
             }
 
-            return 0f;
+            int[] itemAmounts = new int[itemsCount];
+
+            for (int i = 0; i < itemsCount; i++)
+                itemAmounts[i] = Convert(amountsSeperated[i]);
+            
+
+            return itemAmounts;
         }
     }
 }

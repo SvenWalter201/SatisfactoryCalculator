@@ -49,6 +49,14 @@ namespace SatisfactoryCalculator
             }
         }
 
+        public string ImgPath
+        {
+            get
+            {
+                return Item.ImgPath;
+            }
+        }
+
         Item Item { get; }
 
         public ItemViewModel(Item item)
@@ -78,6 +86,7 @@ namespace SatisfactoryCalculator
             Notify("Amount");
             Notify("AmountDist");
             Notify("PotentialAmount");
+            Notify("ImgPath");
         }
     }
 }

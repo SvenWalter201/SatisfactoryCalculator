@@ -130,6 +130,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\ConsoleAllocator.cs" />
+    <Compile Include="src\ErrorMessage.cs" />
     <Compile Include="src\ItemListViewModel.cs" />
     <Compile Include="src\ItemViewModel.cs" />
     <Compile Include="src\MainViewModel.cs" />
@@ -142,6 +143,31 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\ItemIcons\Resources\bauxite.png" />
+    <Content Include="Assets\ItemIcons\Resources\caterium_ingot.png" />
+    <Content Include="Assets\ItemIcons\Resources\caterium_ore.png" />
+    <Content Include="Assets\ItemIcons\Resources\coal.png" />
+    <Content Include="Assets\ItemIcons\Resources\concrete.png" />
+    <Content Include="Assets\ItemIcons\Resources\copper_ingot.png" />
+    <Content Include="Assets\ItemIcons\Resources\copper_ore.png" />
+    <Content Include="Assets\ItemIcons\Resources\encased_industrial_beam.png" />
+    <Content Include="Assets\ItemIcons\Resources\heavy_modular_frame.png" />
+    <Content Include="Assets\ItemIcons\Resources\iron_ingot.png" />
+    <Content Include="Assets\ItemIcons\Resources\iron_ore.png" />
+    <Content Include="Assets\ItemIcons\Resources\iron_plate.png" />
+    <Content Include="Assets\ItemIcons\Resources\iron_rod.png" />
+    <Content Include="Assets\ItemIcons\Resources\limestone.png" />
+    <Content Include="Assets\ItemIcons\Resources\modular_frame.png" />
+    <Content Include="Assets\ItemIcons\Resources\quartz_crystal.png" />
+    <Content Include="Assets\ItemIcons\Resources\raw_quartz.png" />
+    <Content Include="Assets\ItemIcons\Resources\reinforced_iron_plate.png" />
+    <Content Include="Assets\ItemIcons\Resources\screw.png" />
+    <Content Include="Assets\ItemIcons\Resources\steel_beam.png" />
+    <Content Include="Assets\ItemIcons\Resources\steel_ingot.png" />
+    <Content Include="Assets\ItemIcons\Resources\steel_pipe.png" />
+    <Content Include="Assets\ItemIcons\Resources\sulfur.png" />
+    <Content Include="Assets\ItemIcons\Resources\uranium.png" />
+    <Content Include="Assets\ItemIcons\Resources\wire.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -181,6 +207,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\ItemIcons\Assembler\" />
+    <Folder Include="Assets\ItemIcons\Constructor\" />
     <Folder Include="xaml\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
