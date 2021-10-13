@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Backend;
 
 namespace SatisfactoryCalculator
@@ -56,6 +57,16 @@ namespace SatisfactoryCalculator
                 return Item.ImgPath;
             }
         }
+
+        public List<ComponentInfo> ComponentTootipInfo 
+        {
+            get
+            {
+                return Item.ComponentTooltipInfo;
+            }
+        
+        }
+
 
         Item Item { get; }
 

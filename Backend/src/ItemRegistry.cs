@@ -38,7 +38,6 @@ namespace Backend
             }
             catch (Exception e)
             {
-                Console.WriteLine("T2");
                 throw e;
             }
 

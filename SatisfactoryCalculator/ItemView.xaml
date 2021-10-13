@@ -6,14 +6,32 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="450">
+    d:DesignWidth="800">
 
     <StackPanel Orientation="Horizontal" >
         <StackPanel Orientation="Vertical" Background= "#82a9c4">
             <Image Source="{Binding ImgPath, FallbackValue=Assets/ItemIcons/Resources/copper_ore.png}" Width="130" Height="100"/>
             <TextBlock Text="{Binding Type, FallbackValue=Type}" 
-                       Width="130" Margin="5" TextWrapping="Wrap" TextAlignment="Center" Height="100"/>
-
+                       Width="130" Margin="5" TextWrapping="Wrap" TextAlignment="Center" Height="50"/>
+            <ToolTipService.ToolTip>
+                <ItemsControl ItemsSource="{Binding ComponentTootipInfo}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel MaxWidth="1000" Orientation="Horizontal"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical" Margin="10">
+                                <Image Source="{Binding Path}" Width="50" Height="50"/>
+                                <TextBlock FontSize="20" Text="{Binding Amount}" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    
+                </ItemsControl>
+            </ToolTipService.ToolTip>
         </StackPanel>
         <RelativePanel Background="#bde4ff">
             <TextBlock Text="{Binding ConstructionTime, FallbackValue=C}" 

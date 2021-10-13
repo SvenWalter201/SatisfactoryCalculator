@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace SatisfactoryCalculator
+namespace ApplicationUtility
 {
     internal static class ConsoleAllocator
     {

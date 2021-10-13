@@ -30,7 +30,7 @@ namespace Backend
                 string craftTimeStr = fragments[fragments.Length - 2];
                 string imgPath = imgPathPrefix + fragments[fragments.Length - 1];
                 
-                Console.WriteLine(imgPath);
+                //Console.WriteLine(imgPath);
                 ComponentRequirement[] components = new ComponentRequirement[Convert(componentsAmount)];
 
                 for (int j = 2, index = 0; j < fragments.Length - 3; j += 2, index++)
@@ -48,7 +48,6 @@ namespace Backend
                     }
                     catch(Exception e)
                     {
-                        Console.WriteLine("T1");
                         throw e;
                     }
                 }
@@ -62,7 +61,6 @@ namespace Backend
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("T1");
                     throw e;
                 }
 
@@ -91,7 +89,6 @@ namespace Backend
             }
             catch (Exception e)
             {
-                Console.WriteLine("T0");
                 throw e;
             }
         }
