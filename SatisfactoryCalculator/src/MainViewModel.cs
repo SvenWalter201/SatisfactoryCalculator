@@ -2,16 +2,12 @@
 using System;
 using System.Collections.Generic;
 using ApplicationUtility;
+using Windows.UI.Xaml;
 
 namespace SatisfactoryCalculator
 {
     public class MainViewModel : ViewModel
     {
-        public ItemListViewModel ResourcesListViewModel { get; set; }
-        public ItemListViewModel ConstructorListViewModel { get; set; }
-        public ItemListViewModel AssemblerListViewModel { get; set; }
-        public ItemListViewModel ManufacturerListViewModel { get; set; }
-
         Caller caller;
 
         static MainViewModel instance;
@@ -33,47 +29,77 @@ namespace SatisfactoryCalculator
 
         ItemRegistry registry;
 
+        public Command LoadFileCommand { get; private set; }
+        public Command SaveFileCommand { get; private set; }
+        public Command SaveFileAsCommand { get; private set; }
+
+        public Command SwitchOperationModeCommand { get; private set; }
+
+        bool operationMode = false;
+        public bool OperationMode => operationMode;
+
+        public Command OpenNewWindowCommand { get; private set; }
+
+        public ResourcePotentialViewModel ResourcePotentialViewModel { get; private set; }
+        public DependencyCostViewModel DependencyCostViewModel { get; private set; }
+
+        void OpenNewWindow()
+        {
+            //WindowManager wC = new WindowManager();
+            //wC.CreateNewWindow<MainPage>();
+        }
+
+        void LoadFile()
+        {
+            SCLog.INFO("Event 1 fired");
+        }
+
+        void SaveFile()
+        {
+            SCLog.INFO("Event 2 fired");
+        }
+
+        void SaveFileAs()
+        {
+            SCLog.INFO("Event 3 fired");
+        }
+
+        void SwitchOperationMode()
+        {
+            operationMode = !operationMode;
+            Refresh();
+        }
+
         public void Init()
         {
             caller = new Caller();
             ConsoleAllocator.ShowConsoleWindow();
+            LoadFileCommand = new Command(LoadFile);
+            SaveFileCommand = new Command(SaveFile);
+            SaveFileAsCommand = new Command(SaveFileAs);
+            OpenNewWindowCommand = new Command(OpenNewWindow);
+            SwitchOperationModeCommand = new Command(SwitchOperationMode);
 
             registry = ItemRegistry.Instance;
 
-            if(!caller.SaveCall(() => registry.InitRegistry(), "Could not initialize ItemRegistry\nApplication will now shut down", SeverityLevel.FATAL))
+            if(!caller.SaveCall(() => registry.InitRegistry(), "Could not initialize ItemRegistry\nApplication will now shut down", SeverityLevel.CRITICAL))
             {
                 return;
             }
 
-            List<ItemViewModel> resourceItemViewModels = new List<ItemViewModel>(registry.Resources.Count);
-            List<ItemViewModel> constructorItemViewModels = new List<ItemViewModel>(registry.ConstructorItems.Count);
-            List<ItemViewModel> assemblerItemViewModels = new List<ItemViewModel>(registry.AssemblerItems.Count);
-            List<ItemViewModel> manufacturerItemViewModels = new List<ItemViewModel>(registry.ManufacturerItems.Count);
-
-            for (int i = 0; i < registry.Resources.Count; i++)
-                resourceItemViewModels.Add(new ItemViewModel(registry.Resources[i]));
-
-            for (int i = 0; i < registry.ConstructorItems.Count; i++)
-                constructorItemViewModels.Add(new ItemViewModel(registry.ConstructorItems[i]));
-
-            for (int i = 0; i < registry.AssemblerItems.Count; i++)
-                assemblerItemViewModels.Add(new ItemViewModel(registry.AssemblerItems[i]));
-
-            for (int i = 0; i < registry.ManufacturerItems.Count; i++)
-                manufacturerItemViewModels.Add(new ItemViewModel(registry.ManufacturerItems[i]));
-
-            ResourcesListViewModel = new ItemListViewModel(resourceItemViewModels);
-            ConstructorListViewModel = new ItemListViewModel(constructorItemViewModels);
-            AssemblerListViewModel = new ItemListViewModel(assemblerItemViewModels);
-            ManufacturerListViewModel = new ItemListViewModel(manufacturerItemViewModels);
+            ResourcePotentialViewModel = new ResourcePotentialViewModel();
+            DependencyCostViewModel = new DependencyCostViewModel();
+            
+            SCLog.INFO("The {0} comes before the {1}", "one", "two");
+            Refresh();
         }
 
         public override void Refresh()
         {
-            ResourcesListViewModel.Refresh();
-            ConstructorListViewModel.Refresh();
-            AssemblerListViewModel.Refresh();
-            ManufacturerListViewModel.Refresh();
+            //Notify("ResourcePotentialVisibility");
+            //Notify("DependencyCostVisibility");
+            ResourcePotentialViewModel.Refresh();
+            DependencyCostViewModel.Refresh();
         }
     }
 }

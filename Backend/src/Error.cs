@@ -1,7 +1,9 @@
 ﻿using System;
-
+using Essential.Diagnostics;
 namespace Backend
 {
+
+
     class Error
     {
         public string Message { get; private set; }

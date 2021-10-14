@@ -67,7 +67,6 @@ namespace SatisfactoryCalculator
         
         }
 
-
         Item Item { get; }
 
         public ItemViewModel(Item item)
@@ -79,25 +78,25 @@ namespace SatisfactoryCalculator
         {
             if(int.TryParse(value, out int amount))
             {
-                Console.WriteLine("Property {0} has changed", Type);
+                SCLog.INFO("Property {0} has changed", Type);
                 ItemRegistry.Instance.CalculatePotentialAmounts(Item, amount);
                 MainViewModel.Instance.Refresh();
             }
             else
             {
-                Notify("Amount");
-                Console.WriteLine("Property {0} couldn't be changed", Type);
+                Notify(nameof(Amount));
+                SCLog.WARN("Property {0} couldn't be changed", Type);
             }
         }
 
         public override void Refresh()
         {
-            Notify("Type");
-            Notify("ConstructionTime");
-            Notify("Amount");
-            Notify("AmountDist");
-            Notify("PotentialAmount");
-            Notify("ImgPath");
+            Notify(nameof(Type));
+            Notify(nameof(ConstructionTime));
+            Notify(nameof(Amount));
+            Notify(nameof(AmountDist));
+            Notify(nameof(PotentialAmount));
+            Notify(nameof(ImgPath));
         }
     }
 }

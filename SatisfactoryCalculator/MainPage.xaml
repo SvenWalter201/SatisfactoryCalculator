@@ -4,110 +4,41 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SatisfactoryCalculator"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DataContext="{d:DesignInstance Type=local:MainViewModel}"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="130"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Height="130">
+        <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Orientation="Horizontal">
+            <DropDownButton>
+                <TextBlock FontSize="14" Text="File"/>
+                <DropDownButton.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="Load File" Tag="load" Command="{Binding LoadFileCommand}"/>
+                        <MenuFlyoutItem Text="Save File"  Tag="save" Command="{Binding SaveFileCommand}"/>
+                        <MenuFlyoutItem Text="Save File as" Tag="save as" Command="{Binding SaveFileAsCommand}"/>
+                    </MenuFlyout>
+                </DropDownButton.Flyout>
+            </DropDownButton>
+            <Button Command="{Binding OpenNewWindowCommand}">Open new Window</Button>
+            <Button Command="{Binding SwitchOperationModeCommand}">Switch Operation Mode</Button>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Height="130">
             <TextBlock Text="Satisfactory Calculator" FontSize="60" FontWeight="Black" 
                        TextDecorations="Underline" HorizontalAlignment="Center" Margin="10" Height="130" TextAlignment="Center"/>
         </StackPanel>
-
-        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Orientation="Horizontal" Height="100">
-            <TextBlock FontSize="32" FontWeight="Black" Text="Resources" Margin="10" Width="450"/>
-            <TextBlock FontSize="32" FontWeight="Black" Text="Constructor" Margin="10" Width="450"/>
-            <TextBlock FontSize="32" FontWeight="Black" Text="Assembler" Margin="10" Width="450"/>
-            <TextBlock FontSize="32" FontWeight="Black" Text="Manifacturer" Margin="10" Width="450"/>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Orientation="Horizontal" Height="100">
-            <StackPanel VerticalAlignment="Top" Orientation="Horizontal" Width="450" Height="80" Margin="10">
-                <RelativePanel Background= "#82a9c4">
-                    <TextBlock FontSize="30" Text="Name" Margin="5" Width="130" TextAlignment="Center"/>
-                </RelativePanel>
-                <RelativePanel Background= "#bde4ff">
-                    <TextBlock FontSize="30" Text="Ct" Margin="5" Width="40" TextAlignment="Center" HorizontalTextAlignment="Center"/>
-                </RelativePanel>
-                <RelativePanel Background= "#82a9c4">
-                    <TextBlock FontSize="30" Text="Num" Margin="5" Width="90" TextAlignment="Center"/>
-                </RelativePanel>
-                <RelativePanel Background= "#bde4ff">
-                    <TextBlock FontSize="30" Text="U/F" Margin="5" Width="70" TextAlignment="Center"/>
-                </RelativePanel>
-                <RelativePanel Background= "#82a9c4">
-                    <TextBlock FontSize="30" Text="Pt" Margin="5" Width="70" TextAlignment="Center"/>
-                </RelativePanel>
-            </StackPanel>
-            <StackPanel VerticalAlignment="Top" Orientation="Horizontal" Width="450" Height="80" Margin="10">
-                <RelativePanel Background= "#82a9c4">
-                    <TextBlock FontSize="30" Text="Name" Margin="5" Width="130" TextAlignment="Center"/>
-                </RelativePanel>
-                <RelativePanel Background= "#bde4ff">
-                    <TextBlock FontSize="30" Text="Ct" Margin="5" Width="40" TextAlignment="Center" HorizontalTextAlignment="Center"/>
-                </RelativePanel>
-                <RelativePanel Background= "#82a9c4">
-                    <TextBlock FontSize="30" Text="Num" Margin="5" Width="90" TextAlignment="Center"/>
-                </RelativePanel>
-                <RelativePanel Background= "#bde4ff">
-                    <TextBlock FontSize="30" Text="U/F" Margin="5" Width="70" TextAlignment="Center"/>
-                </RelativePanel>
-                <RelativePanel Background= "#82a9c4">
-                    <TextBlock FontSize="30" Text="Pt" Margin="5" Width="70" TextAlignment="Center"/>
-                </RelativePanel>
-            </StackPanel>
-            <StackPanel VerticalAlignment="Top" Orientation="Horizontal" Width="450" Height="80" Margin="10">
-                <RelativePanel Background= "#82a9c4">
-                    <TextBlock FontSize="30" Text="Name" Margin="5" Width="130" TextAlignment="Center"/>
-                </RelativePanel>
-                <RelativePanel Background= "#bde4ff">
-                    <TextBlock FontSize="30" Text="Ct" Margin="5" Width="40" TextAlignment="Center" HorizontalTextAlignment="Center"/>
-                </RelativePanel>
-                <RelativePanel Background= "#82a9c4">
-                    <TextBlock FontSize="30" Text="Num" Margin="5" Width="90" TextAlignment="Center"/>
-                </RelativePanel>
-                <RelativePanel Background= "#bde4ff">
-                    <TextBlock FontSize="30" Text="U/F" Margin="5" Width="70" TextAlignment="Center"/>
-                </RelativePanel>
-                <RelativePanel Background= "#82a9c4">
-                    <TextBlock FontSize="30" Text="Pt" Margin="5" Width="70" TextAlignment="Center"/>
-                </RelativePanel>
-            </StackPanel>
-            <StackPanel VerticalAlignment="Top" Orientation="Horizontal" Width="450" Height="80" Margin="10">
-                <RelativePanel Background= "#82a9c4">
-                    <TextBlock FontSize="30" Text="Name" Margin="5" Width="130" TextAlignment="Center"/>
-                </RelativePanel>
-                <RelativePanel Background= "#bde4ff">
-                    <TextBlock FontSize="30" Text="Ct" Margin="5" Width="40" TextAlignment="Center" HorizontalTextAlignment="Center"/>
-                </RelativePanel>
-                <RelativePanel Background= "#82a9c4">
-                    <TextBlock FontSize="30" Text="Num" Margin="5" Width="90" TextAlignment="Center"/>
-                </RelativePanel>
-                <RelativePanel Background= "#bde4ff">
-                    <TextBlock FontSize="30" Text="U/F" Margin="5" Width="70" TextAlignment="Center"/>
-                </RelativePanel>
-                <RelativePanel Background= "#82a9c4">
-                    <TextBlock FontSize="30" Text="Pt" Margin="5" Width="70" TextAlignment="Center"/>
-                </RelativePanel>
-            </StackPanel>
-        </StackPanel>
-
-
-        <ScrollViewer Grid.Row="3" Grid.Column="0" VerticalScrollMode="Auto" HorizontalScrollMode="Auto">
-            <StackPanel VerticalAlignment="Top" Orientation="Horizontal" Background="#ddd">
-                <local:ItemListView DataContext="{Binding ResourcesListViewModel}" Margin="10" Width="450"/>
-                <local:ItemListView DataContext="{Binding ConstructorListViewModel}" Margin="10" Width="450"/>
-                <local:ItemListView DataContext="{Binding AssemblerListViewModel}" Margin="10" Width="450"/>
-                <local:ItemListView DataContext="{Binding ManufacturerListViewModel}" Margin="10" Width="450"/>
-            </StackPanel>
-        </ScrollViewer>
+        <local:ResourcePotentialView Grid.Row="2" Grid.Column="0" DataContext="{Binding ResourcePotentialViewModel}" 
+                                     Visibility="{Binding ResourcePotentialVisibility, FallbackValue = COLLAPSED }" />
+        <local:DependencyCostView Grid.Row="2" Grid.Column="0" DataContext="{Binding DependencyCostViewModel}" 
+                                     Visibility="{Binding DependencyCostVisibility, FallbackValue = COLLAPSED }" />
     </Grid>
 </Page>

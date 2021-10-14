@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryCalculator", "SatisfactoryCalculator\SatisfactoryCalculator.csproj", "{176E9DF6-DD86-478B-90E6-1B1B2371FCAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend", "Backend\Backend.csproj", "{B7E82631-FE4C-445B-9E0C-D8A428454480}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend", "Backend\Backend.csproj", "{B7E82631-FE4C-445B-9E0C-D8A428454480}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +22,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{176E9DF6-DD86-478B-90E6-1B1B2371FCAA}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{176E9DF6-DD86-478B-90E6-1B1B2371FCAA}.Debug|Any CPU.Build.0 = Debug|x86
+		{176E9DF6-DD86-478B-90E6-1B1B2371FCAA}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{176E9DF6-DD86-478B-90E6-1B1B2371FCAA}.Debug|ARM.ActiveCfg = Debug|ARM
 		{176E9DF6-DD86-478B-90E6-1B1B2371FCAA}.Debug|ARM.Build.0 = Debug|ARM
 		{176E9DF6-DD86-478B-90E6-1B1B2371FCAA}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -35,6 +37,8 @@ Global
 		{176E9DF6-DD86-478B-90E6-1B1B2371FCAA}.Debug|x86.Build.0 = Debug|x86
 		{176E9DF6-DD86-478B-90E6-1B1B2371FCAA}.Debug|x86.Deploy.0 = Debug|x86
 		{176E9DF6-DD86-478B-90E6-1B1B2371FCAA}.Release|Any CPU.ActiveCfg = Release|x86
+		{176E9DF6-DD86-478B-90E6-1B1B2371FCAA}.Release|Any CPU.Build.0 = Release|x86
+		{176E9DF6-DD86-478B-90E6-1B1B2371FCAA}.Release|Any CPU.Deploy.0 = Release|x86
 		{176E9DF6-DD86-478B-90E6-1B1B2371FCAA}.Release|ARM.ActiveCfg = Release|ARM
 		{176E9DF6-DD86-478B-90E6-1B1B2371FCAA}.Release|ARM.Build.0 = Release|ARM
 		{176E9DF6-DD86-478B-90E6-1B1B2371FCAA}.Release|ARM.Deploy.0 = Release|ARM

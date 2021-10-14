@@ -1,6 +1,7 @@
 ﻿using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using System;
+using Backend;
 
 namespace ApplicationUtility
 {
@@ -29,7 +30,7 @@ namespace ApplicationUtility
             }
             catch (Exception e)
             {
-                MessageDisplay.Instance.DisplayExceptionMessage(e, SeverityLevel.TRIVIAL);
+                MessageDisplay.Instance.DisplayExceptionMessage(e, severityLevel, messageOverride);
                 return false;
             }
         }
@@ -84,12 +85,14 @@ namespace ApplicationUtility
         public async void DisplayExceptionMessage(Exception e, SeverityLevel severityLevel, string messageOverride = "")
         {
             string msg = (messageOverride != "") ? messageOverride : e.Message;
+            SCLog.LOG((int)severityLevel, msg);
+
             var messageDialog = new MessageDialog("An Error occured:\n" + msg + "\nSeverityLevel: " + severityLevel);
 
             string dismissalOption;
             switch (severityLevel)
             {
-                case SeverityLevel.FATAL:
+                case SeverityLevel.CRITICAL:
                     dismissalOption = "Quit";
                     break;
                 default:
@@ -107,7 +110,7 @@ namespace ApplicationUtility
         {
             switch ((SeverityLevel)command.Id)
             {
-                case SeverityLevel.FATAL:
+                case SeverityLevel.CRITICAL:
                     {
                         Application.Current.Exit();
                         break;
@@ -120,7 +123,8 @@ namespace ApplicationUtility
     {
         TRIVIAL,
         WARN,
-        FATAL
+        ERROR,
+        CRITICAL
     }
     
 }

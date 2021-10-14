@@ -29,6 +29,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -41,6 +42,7 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -119,6 +121,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DependencyCostView.xaml.cs">
+      <DependentUpon>DependencyCostView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ItemListView.xaml.cs">
       <DependentUpon>ItemListView.xaml</DependentUpon>
     </Compile>
@@ -129,16 +134,22 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourcePotentialView.xaml.cs">
+      <DependentUpon>ResourcePotentialView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="src\ApplicationUtility\ConsoleAllocator.cs" />
     <Compile Include="src\ApplicationUtility\MessageDisplay.cs" />
     <Compile Include="ItemCompositionview.xaml.cs">
       <DependentUpon>ItemCompositionview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="src\ApplicationUtility\WindowManager.cs" />
+    <Compile Include="src\DependencyCostViewModel.cs" />
     <Compile Include="src\ItemListViewModel.cs" />
     <Compile Include="src\ItemViewModel.cs" />
     <Compile Include="src\MainViewModel.cs" />
     <Compile Include="src\MVVM\Command.cs" />
     <Compile Include="src\MVVM\ViewModel.cs" />
+    <Compile Include="src\ResourcePotentialViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -185,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="DependencyCostView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ItemListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,6 +213,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ItemCompositionview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourcePotentialView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,6 +235,7 @@
   <ItemGroup>
     <Folder Include="Assets\ItemIcons\Assembler\" />
     <Folder Include="Assets\ItemIcons\Constructor\" />
+    <Folder Include="Assets\SaveFiles\" />
     <Folder Include="xaml\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
