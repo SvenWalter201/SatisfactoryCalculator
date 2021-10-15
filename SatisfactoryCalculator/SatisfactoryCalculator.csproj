@@ -121,8 +121,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ItemAmountView.xaml.cs">
+      <DependentUpon>ItemAmountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="src\ItemAmountViewModel.cs" />
     <Compile Include="DependencyCostView.xaml.cs">
       <DependentUpon>DependencyCostView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemDependencyView.xaml.cs">
+      <DependentUpon>ItemDependencyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ItemListView.xaml.cs">
       <DependentUpon>ItemListView.xaml</DependentUpon>
@@ -144,6 +151,7 @@
     </Compile>
     <Compile Include="src\ApplicationUtility\WindowManager.cs" />
     <Compile Include="src\DependencyCostViewModel.cs" />
+    <Compile Include="src\ItemDependencyViewModel.cs" />
     <Compile Include="src\ItemListViewModel.cs" />
     <Compile Include="src\ItemViewModel.cs" />
     <Compile Include="src\MainViewModel.cs" />
@@ -197,6 +205,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="DependencyCostView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemAmountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemDependencyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

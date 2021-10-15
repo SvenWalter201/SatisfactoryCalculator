@@ -138,7 +138,19 @@ namespace Backend
             }
         }
 
-        int GetItemIndexByName(string name)
+        public Item GetItemByName(string name)
+        {
+            for (int i = 0; i < Items.Count; i++)
+            {
+                if (Items[i].Type == name)
+                    return Items[i];
+            }
+
+            SCLog.WARN("The Item {1} does not exist", name);
+            return null;
+        }
+
+        public int GetItemIndexByName(string name)
         {
             for (int i = 0; i < Items.Count; i++)
             {
@@ -146,7 +158,7 @@ namespace Backend
                     return i;
             }
 
-            Console.WriteLine("The Item {1} does not exist", name);
+            SCLog.WARN("The Item {1} does not exist", name);
             return -1;
         }
 

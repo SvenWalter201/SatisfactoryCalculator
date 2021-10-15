@@ -1,25 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Backend;
+﻿using Backend;
 
 namespace SatisfactoryCalculator
 {
     public class ItemViewModel : ViewModel
     {
-        public string Type 
-        { 
-            get 
-            {
-                return Item.Type;
-            } 
-        }
-        public string ConstructionTime 
-        { 
-            get    
-            {
-                return Item.CraftTime.ToString();
-            } 
-        }
+        public string Type => Item.Type;
+        public string ConstructionTime => Item.CraftTime.ToString();
 
         public string Amount { 
             get 
@@ -42,36 +28,28 @@ namespace SatisfactoryCalculator
             }
         }
 
-        public string PotentialAmount
-        {
-            get
-            {
-                return Item.PotentialAmount.ToString();
-            }
-        }
+        public string PotentialAmount => Item.PotentialAmount.ToString();
 
-        public string ImgPath
-        {
-            get
-            {
-                return Item.ImgPath;
-            }
-        }
+        public string ImgPath => Item.ImgPath;
 
-        public List<ComponentInfo> ComponentTootipInfo 
-        {
-            get
-            {
-                return Item.ComponentTooltipInfo;
-            }
-        
-        }
+        public ItemAmountViewModel[] ComponentTootipInfo { get; }
 
         Item Item { get; }
 
         public ItemViewModel(Item item)
         {
             Item = item;
+
+            //setup tooltip information
+            ComponentRequirement[] reqs = item.Components;
+            ComponentTootipInfo = new ItemAmountViewModel[reqs.Length];
+            for (int i = 0; i < reqs.Length; i++)
+            {
+                ComponentRequirement req = reqs[i];
+                Item it = ItemRegistry.Instance.GetItemByName(req.item);
+                float reqAmount = req.amount;
+                ComponentTootipInfo[i] = new ItemAmountViewModel(it, reqAmount);
+            }
         }
 
         void OnAmountChanged(string value)

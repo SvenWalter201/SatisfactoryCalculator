@@ -9,7 +9,20 @@
     d:DesignHeight="2000"
     d:DesignWidth="2000">
 
-    <StackPanel Background="AntiqueWhite">
-        <TextBlock Text="Dependency Cost Operation Mode (Work in Progress)" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
-    </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer Grid.Row="0" Grid.Column="0" VerticalScrollMode="Auto" HorizontalScrollMode="Auto">
+            <StackPanel Background="AntiqueWhite">
+                <StackPanel Orientation="Horizontal">
+                    <local:ItemDependencyView DataContext="{Binding ItemDependencyViewModel}"></local:ItemDependencyView>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </UserControl>

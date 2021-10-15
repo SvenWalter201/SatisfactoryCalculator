@@ -7,11 +7,12 @@ namespace Backend
     public static class SCLog
     {
         static ColoredConsoleTraceListener coloredConsole = new ColoredConsoleTraceListener();
-
+        static Stopwatch stopWatch = new Stopwatch();
         static SCLog()
         {
             coloredConsole.Template = "{DateTime:HH':'mm':'ssZ} [{EventType}]: {Message}{Data}";
             coloredConsole.SetConsoleColor(TraceEventType.Information, ConsoleColor.Gray);
+            coloredConsole.SetConsoleColor(TraceEventType.Verbose, ConsoleColor.Green);
             coloredConsole.SetConsoleColor(TraceEventType.Warning, ConsoleColor.Yellow);
             coloredConsole.SetConsoleColor(TraceEventType.Error, ConsoleColor.Magenta);
             coloredConsole.SetConsoleColor(TraceEventType.Critical, ConsoleColor.Red);
@@ -52,6 +53,12 @@ namespace Backend
         }
 
         [Conditional("DEBUG")]
+        static void VERBOSE(string message = "", params object[] args)
+        {
+            coloredConsole.TraceEvent(null, "", TraceEventType.Verbose, 0, message, args);
+        }
+
+        [Conditional("DEBUG")]
         public static void WARN(string message = "", params object[] args)
         {
             Console.WriteLine("{0}");
@@ -68,6 +75,47 @@ namespace Backend
         public static void CRITICAL(string message = "", params object[] args)
         {
             coloredConsole.TraceEvent(null, "", TraceEventType.Critical, 0, message, args);
+        }
+
+        [Conditional("DEBUG")]
+        public static void TIMER_START()
+        {
+            if (stopWatch.IsRunning)
+            {
+                WARN("Timer already running. Call {0} to reset.", nameof(TIMER_STOP));
+                return;
+            }
+            stopWatch.Start();
+        }
+
+        [Conditional("DEBUG")]
+        public static void TIMER_STOP()
+        {
+            TIMER_STOP("");
+        }
+
+        [Conditional("DEBUG")]
+        public static void TIMER_STOP(string message)
+        {
+            if (!stopWatch.IsRunning)
+            {
+                WARN("{0} must be called first!", nameof(TIMER_START));
+                return;
+            }
+
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+            stopWatch.Reset();
+
+            // Format and display the TimeSpan value.
+            string elapsedTime = string.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+                ts.Hours, ts.Minutes, ts.Seconds,
+                ts.Milliseconds);
+
+            if(message!="")
+                VERBOSE("[{0}]: Elapsed Time: {1}", message, elapsedTime);
+            else
+                VERBOSE("Elapsed Time: {0}", elapsedTime);
         }
     }
 }

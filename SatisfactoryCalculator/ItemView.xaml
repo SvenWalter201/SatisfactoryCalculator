@@ -2,15 +2,16 @@
     x:Class="SatisfactoryCalculator.ItemView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SatisfactoryCalculator"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300"
+    d:DesignHeight="200"
     d:DesignWidth="800">
 
     <StackPanel Orientation="Horizontal" >
         <StackPanel Orientation="Vertical" Background= "#82a9c4">
-            <Image Source="{Binding ImgPath, FallbackValue=Assets/ItemIcons/Resources/copper_ore.png}" Width="130" Height="100"/>
+            <Image Source="{Binding ImgPath, FallbackValue=Assets/ItemIcons/Resources/copper_ore.png}" Width="130" Height="130"/>
             <TextBlock Text="{Binding Type, FallbackValue=Type}" 
                        Width="130" Margin="5" TextWrapping="Wrap" TextAlignment="Center" Height="50"/>
             <ToolTipService.ToolTip>
@@ -23,13 +24,9 @@
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Vertical" Margin="10">
-                                <Image Source="{Binding Path}" Width="50" Height="50"/>
-                                <TextBlock FontSize="20" Text="{Binding Amount}" HorizontalAlignment="Center"/>
-                            </StackPanel>
+                            <local:ItemAmountView/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
-
                 </ItemsControl>
             </ToolTipService.ToolTip>
         </StackPanel>

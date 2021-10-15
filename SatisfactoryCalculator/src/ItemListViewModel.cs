@@ -1,15 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
-namespace SatisfactoryCalculator
+﻿namespace SatisfactoryCalculator
 {
     public class ItemListViewModel : ViewModel
     {
-        public ObservableCollection<ItemViewModel> Items { get; set; }
+        public ItemViewModel[] Items { get; set; }
 
-        public ItemListViewModel(List<ItemViewModel> items)
+        public ItemListViewModel(ItemViewModel[] items)
         {
-            Items = new ObservableCollection<ItemViewModel>(items);
+            Items = items;
         }
 
         public override void Refresh()

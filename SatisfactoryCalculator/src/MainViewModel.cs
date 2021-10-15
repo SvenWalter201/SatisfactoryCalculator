@@ -1,8 +1,5 @@
 ﻿using Backend;
-using System;
-using System.Collections.Generic;
 using ApplicationUtility;
-using Windows.UI.Xaml;
 
 namespace SatisfactoryCalculator
 {
@@ -74,6 +71,7 @@ namespace SatisfactoryCalculator
         {
             caller = new Caller();
             ConsoleAllocator.ShowConsoleWindow();
+            SCLog.TIMER_START();
             LoadFileCommand = new Command(LoadFile);
             SaveFileCommand = new Command(SaveFile);
             SaveFileAsCommand = new Command(SaveFileAs);
@@ -89,9 +87,8 @@ namespace SatisfactoryCalculator
 
             ResourcePotentialViewModel = new ResourcePotentialViewModel();
             DependencyCostViewModel = new DependencyCostViewModel();
-            
-            SCLog.INFO("The {0} comes before the {1}", "one", "two");
             Refresh();
+            SCLog.TIMER_STOP("INITIALIZATION");
         }
 
         public override void Refresh()
